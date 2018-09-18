@@ -39,12 +39,79 @@ job_first_level_estimate(fspm,par);
 
 %% Contrast : definition
 
-trash        = [1 0 0 0 0];
-Likert       = [0 1 0 0 0];
-Picture__NEU = [0 0 1 0 0];
-Picture__ISO = [0 0 0 1 0];
-Picture__ERO = [0 0 0 0 1];
+% trash        = [1 0 0 0 0];
+% Likert       = [0 1 0 0 0];
+% Picture__NEU = [0 0 1 0 0];
+% Picture__ISO = [0 0 0 1 0];
+% Picture__ERO = [0 0 0 0 1];
+% 
+% 
+% contrast.names = {
+%     
+% 'trash'
+% 'Likert'
+% 'Picture__NEU'
+% 'Picture__ISO'
+% 'Picture__ERO'
+% 
+% 'Picture__NEU - trash'
+% 'Picture__ISO - trash'
+% 'Picture__ERO - trash'
+% 
+% 'Picture__NEU - Likert'
+% 'Picture__ISO - Likert'
+% 'Picture__ERO - Likert'
+% 
+% 'Picture__ISO - Picture__NEU'
+% 'Picture__ISO - Picture__ERO'
+% 
+% 'Picture__NEU - Picture__ISO'
+% 'Picture__NEU - Picture__ERO'
+% 
+% 'Picture__ERO - Picture__ISO'
+% 'Picture__ERO - Picture__NEU'
+% 
+% }';
+% 
+% contrast.values = {
+%     
+% trash
+% Likert
+% Picture__NEU
+% Picture__ISO
+% Picture__ERO
+% 
+% Picture__NEU - trash
+% Picture__ISO - trash
+% Picture__ERO - trash
+% 
+% Picture__NEU - Likert
+% Picture__ISO - Likert
+% Picture__ERO - Likert
+% 
+% Picture__ISO - Picture__NEU
+% Picture__ISO - Picture__ERO
+% 
+% Picture__NEU - Picture__ISO
+% Picture__NEU - Picture__ERO
+% 
+% Picture__ERO - Picture__ISO
+% Picture__ERO - Picture__NEU
+% 
+% }';
+% 
+% contrast.types = cat(1,repmat({'T'},[1 length(contrast.names)]));
 
+
+trash               = [ 1 0 0 0 0 0 0 0 0 ];
+Likert              = [ 0 1 0 0 0 0 0 0 0 ];
+Picture__NEU        = [ 0 0 1 0 0 0 0 0 0 ];
+Picture__ISO        = [ 0 0 0 1 0 0 0 0 0 ];
+Picture__ISO_AIME   = [ 0 0 0 0 1 0 0 0 0 ];
+Picture__ISO_DESIRE = [ 0 0 0 0 0 1 0 0 0 ];
+Picture__ERO        = [ 0 0 0 0 0 0 1 0 0 ];
+Picture__ERO_AIME   = [ 0 0 0 0 0 0 0 1 0 ];
+Picture__ERO_DESIRE = [ 0 0 0 0 0 0 0 0 1 ];
 
 contrast.names = {
     
@@ -52,24 +119,11 @@ contrast.names = {
 'Likert'
 'Picture__NEU'
 'Picture__ISO'
+'Picture__ISO_AIME'
+'Picture__ISO_DESIRE'
 'Picture__ERO'
-
-'Picture__NEU - trash'
-'Picture__ISO - trash'
-'Picture__ERO - trash'
-
-'Picture__NEU - Likert'
-'Picture__ISO - Likert'
-'Picture__ERO - Likert'
-
-'Picture__ISO - Picture__NEU'
-'Picture__ISO - Picture__ERO'
-
-'Picture__NEU - Picture__ISO'
-'Picture__NEU - Picture__ERO'
-
-'Picture__ERO - Picture__ISO'
-'Picture__ERO - Picture__NEU'
+'Picture__ERO_AIME'
+'Picture__ERO_DESIRE'
 
 }';
 
@@ -79,34 +133,24 @@ trash
 Likert
 Picture__NEU
 Picture__ISO
+Picture__ISO_AIME
+Picture__ISO_DESIRE
 Picture__ERO
+Picture__ERO_AIME
+Picture__ERO_DESIRE
 
-Picture__NEU - trash
-Picture__ISO - trash
-Picture__ERO - trash
 
-Picture__NEU - Likert
-Picture__ISO - Likert
-Picture__ERO - Likert
-
-Picture__ISO - Picture__NEU
-Picture__ISO - Picture__ERO
-
-Picture__NEU - Picture__ISO
-Picture__NEU - Picture__ERO
-
-Picture__ERO - Picture__ISO
-Picture__ERO - Picture__NEU
 
 }';
 
 contrast.types = cat(1,repmat({'T'},[1 length(contrast.names)]));
 
+
 %% Contrast : write
 
 par.run = 1;
 par.display = 0;
-par.sessrep = 'repl';
+par.sessrep = 'both';
 par.delete_previous = 1;
 
 job_first_level_contrast(fspm,contrast,par);
